@@ -1,7 +1,5 @@
 package fr.istic.taa.domain;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import javax.persistence.*;
 
 /**
@@ -31,13 +29,10 @@ public class Task {
     }
 
     @ManyToOne
-    //  @JsonSerialize(using = CustomDepartmentSerializer.class)
-    @JsonIgnore
     public Developer getDeveloper() {
         return developer;
     }
 
-    @JsonIgnore
     public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
@@ -67,7 +62,6 @@ public class Task {
     }
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
     public UserStory getUserStory() {
         return userStory;
     }
