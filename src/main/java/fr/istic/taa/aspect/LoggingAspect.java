@@ -18,12 +18,12 @@ public class LoggingAspect {
         return s.substring(s.lastIndexOf(".")+1,s.indexOf("@"));
     }
 
-    @Before("execution(* fr..*Ressource.*(..))")
+    @Before("execution(* fr..*Resource.*(..))")
     public void logBefore(JoinPoint joinPoint) {
         System.out.println("Query\t" + getClass(joinPoint.getThis().toString()) + "\t : \t" + joinPoint.getSignature().getName());
     }
 
-    @After("execution(* fr..*Ressource.*(..))")
+    @After("execution(* fr..*Resource.*(..))")
     public void logAfter(JoinPoint joinPoint) {
         System.out.println("Response\t" + getClass(joinPoint.getThis().toString()) + "\t : \t" + joinPoint.getSignature().getName());
     }

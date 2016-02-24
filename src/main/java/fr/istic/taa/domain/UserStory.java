@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class UserStory {
 
-    private long id;
+    private Long id;
     private String title;
     private String Description;
     private List<Task> tasks;
@@ -20,11 +20,11 @@ public class UserStory {
 
     @Id
     @GeneratedValue
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
