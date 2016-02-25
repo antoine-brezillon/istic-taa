@@ -82,6 +82,16 @@ public class DeveloperResource {
     }
 
     /**
+     * GET  /developers/name/:name -> get the list of "name" developers.
+     */
+    @RequestMapping(value = "/developers/name/{name}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Developer> get(@PathVariable String name) {
+        return developerRepository.findByName(name);
+    }
+
+    /**
      * DELETE  /developers/:id -> delete the "id" developer.
      */
     @RequestMapping(value = "/developers/{id}",
