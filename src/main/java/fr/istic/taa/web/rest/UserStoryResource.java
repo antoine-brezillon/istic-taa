@@ -82,9 +82,9 @@ public class UserStoryResource {
     }
 
     /**
-     * DELETE  /tuserStoriesasks/:id -> delete the "id" userStory.
+     * DELETE  /userStories/:id -> delete the "id" userStory.
      */
-    @RequestMapping(value = "/tauserStoriessks/{id}",
+    @RequestMapping(value = "/userStories/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
