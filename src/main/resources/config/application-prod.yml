@@ -1,0 +1,41 @@
+server:
+    port: 8080
+    #Logging
+    undertow:
+        accesslog:
+            enabled:true
+            dir:target/logs
+            pattern:combined
+        compression:
+            enabled:true
+            min-response-size:1
+
+liquibase:
+    #use liquibase maven plugin : http://www.yegor256.com/2014/07/20/liquibase-in-maven.html
+    #context: prod
+
+spring:
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:mysql://localhost/taadb
+        databaseName: taadb
+        serverName:
+        username: taausr
+        password: taapwd
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        driver-class-name: com.mysql.jdbc.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+        database: MYSQL
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            #https://github.com/liquibase/liquibase-hibernate/wiki#why-not-use-hbm2ddl
+            #unsafe in production
+            ddl-auto: create
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy

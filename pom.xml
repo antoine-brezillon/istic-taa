@@ -84,7 +84,7 @@
             <version>5.1.36</version>
         </dependency>
 
-        <!-- DB Prod schema manager
+        <!-- DB Prod schema manager -->
         <dependency>
             <groupId>com.mattbertolini</groupId>
             <artifactId>liquibase-slf4j</artifactId>
@@ -101,7 +101,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        -->
     </dependencies>
 
     <build>
@@ -154,6 +153,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <arguments>
+                        <argument>--spring.profiles.active=prod</argument>
+                    </arguments>
+                </configuration>
             </plugin>
 
         </plugins>
