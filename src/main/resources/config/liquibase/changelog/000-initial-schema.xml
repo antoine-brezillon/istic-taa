@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="kozhaa (generated)" id="1456592437360-1">
+        <createTable tableName="developer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-2">
+        <createTable tableName="product_backlog">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-3">
+        <createTable tableName="task">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="priority" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="developer" type="BIGINT"/>
+            <column name="user_story" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-4">
+        <createTable tableName="user_story">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="product_backlog" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-5">
+        <createIndex indexName="FK_1e1fho827jnyy4d9bsj7lbqyt" tableName="task">
+            <column name="developer"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-6">
+        <createIndex indexName="FK_1q78s2nn88o1u8ajjmaoq6dn9" tableName="user_story">
+            <column name="product_backlog"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-7">
+        <createIndex indexName="FK_oxajvpo9yaenjbtwrp5qcra4w" tableName="task">
+            <column name="user_story"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-8">
+        <addForeignKeyConstraint baseColumnNames="developer" baseTableName="task" constraintName="FK_1e1fho827jnyy4d9bsj7lbqyt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="developer"/>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-9">
+        <addForeignKeyConstraint baseColumnNames="product_backlog" baseTableName="user_story" constraintName="FK_1q78s2nn88o1u8ajjmaoq6dn9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_backlog"/>
+    </changeSet>
+    <changeSet author="kozhaa (generated)" id="1456592437360-10">
+        <addForeignKeyConstraint baseColumnNames="user_story" baseTableName="task" constraintName="FK_oxajvpo9yaenjbtwrp5qcra4w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_story"/>
+    </changeSet>
+</databaseChangeLog>
