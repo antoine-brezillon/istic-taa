@@ -31,6 +31,7 @@ public class DeveloperResource {
     @RequestMapping(value = "/developers",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Developer> create(@RequestBody Developer developer) throws URISyntaxException {
         if (developer.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new developer cannot already have an ID").body(null);
@@ -47,6 +48,7 @@ public class DeveloperResource {
     @RequestMapping(value = "/developers",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Developer> update(@RequestBody Developer developer) throws URISyntaxException {
         if (developer.getId() == null) {
             return create(developer);
@@ -63,6 +65,7 @@ public class DeveloperResource {
     @RequestMapping(value = "/developers",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<Developer> getAll() {
         return developerRepository.findAll();
     }
@@ -87,6 +90,7 @@ public class DeveloperResource {
     @RequestMapping(value = "/developers/name/{name}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<Developer> get(@PathVariable String name) {
         return developerRepository.findByName(name);
     }
@@ -97,6 +101,7 @@ public class DeveloperResource {
     @RequestMapping(value = "/developers/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         developerRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("developer", id.toString())).build();

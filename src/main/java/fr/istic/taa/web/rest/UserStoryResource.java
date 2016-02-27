@@ -31,6 +31,7 @@ public class UserStoryResource {
     @RequestMapping(value = "/userStories",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<UserStory> create(@RequestBody UserStory userStory) throws URISyntaxException {
         if (userStory.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new userStory cannot already have an ID").body(null);
@@ -47,6 +48,7 @@ public class UserStoryResource {
     @RequestMapping(value = "/userStories",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<UserStory> update(@RequestBody UserStory userStory) throws URISyntaxException {
         if (userStory.getId() == null) {
             return create(userStory);
@@ -63,6 +65,7 @@ public class UserStoryResource {
     @RequestMapping(value = "/userStories",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<UserStory> getAll() {
         return userStoryRepository.findAll();
     }
@@ -73,6 +76,7 @@ public class UserStoryResource {
     @RequestMapping(value = "/userStories/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<UserStory> get(@PathVariable Long id) {
         return Optional.ofNullable(userStoryRepository.findOne(id))
                 .map(userStory -> new ResponseEntity<>(
@@ -87,6 +91,7 @@ public class UserStoryResource {
     @RequestMapping(value = "/userStories/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userStoryRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("userStory", id.toString())).build();

@@ -31,6 +31,7 @@ public class ProductBacklogResource {
     @RequestMapping(value = "/productbacklogs",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<ProductBacklog> create(@RequestBody ProductBacklog productBacklog) throws URISyntaxException {
         if (productBacklog.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new productbacklogs cannot already have an ID").body(null);
@@ -47,6 +48,7 @@ public class ProductBacklogResource {
     @RequestMapping(value = "/productbacklogs",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<ProductBacklog> update(@RequestBody ProductBacklog productBacklog) throws URISyntaxException {
         if (productBacklog.getId() == null) {
             return create(productBacklog);
@@ -63,6 +65,7 @@ public class ProductBacklogResource {
     @RequestMapping(value = "/productbacklogs",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<ProductBacklog> getAll() {
         return productBacklogRepository.findAll();
     }
@@ -73,6 +76,7 @@ public class ProductBacklogResource {
     @RequestMapping(value = "/productbacklogs/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<ProductBacklog> get(@PathVariable Long id) {
         return Optional.ofNullable(productBacklogRepository.findOne(id))
                 .map(productBacklog -> new ResponseEntity<>(
@@ -87,6 +91,7 @@ public class ProductBacklogResource {
     @RequestMapping(value = "/productbacklogs/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productBacklogRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("productBacklog", id.toString())).build();

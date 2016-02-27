@@ -31,6 +31,7 @@ public class TaskResource {
     @RequestMapping(value = "/tasks",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Task> create(@RequestBody Task task) throws URISyntaxException {
         if (task.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new task cannot already have an ID").body(null);
@@ -47,6 +48,7 @@ public class TaskResource {
     @RequestMapping(value = "/tasks",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Task> update(@RequestBody Task task) throws URISyntaxException {
         if (task.getId() == null) {
             return create(task);
@@ -63,6 +65,7 @@ public class TaskResource {
     @RequestMapping(value = "/tasks",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<Task> getAll() {
         return taskRepository.findAll();
     }
@@ -73,6 +76,7 @@ public class TaskResource {
     @RequestMapping(value = "/tasks/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Task> get(@PathVariable Long id) {
         return Optional.ofNullable(taskRepository.findOne(id))
                 .map(task -> new ResponseEntity<>(
@@ -87,6 +91,7 @@ public class TaskResource {
     @RequestMapping(value = "/tasks/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         taskRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("task", id.toString())).build();
