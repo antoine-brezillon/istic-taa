@@ -1,0 +1,40 @@
+nginx:
+  image: jwilder/nginx-proxy:latest
+  hostname: myapp.taa.fr
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+  ports:
+    - "8080:8080"
+
+mysqltaa:
+  image: mysql:latest
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=prootproot
+    - MYSQL_DATABASE=taadb
+
+springApp_1:
+  image: antoinebrez/istic.taa.springapplication-init:latest
+  links:
+    - mysqltaa
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr
+
+springApp_2:
+  image: antoinebrez/istic.taa.springapplication:latest
+  expose:
+    - "8080"
+  links:
+    - mysqltaa
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr
+
+springApp_3:
+  image: antoinebrez/istic.taa.springapplication:latest
+  expose:
+    - "8080"
+  links:
+    - mysqltaa
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr

@@ -84,7 +84,7 @@
             <version>5.1.36</version>
         </dependency>
 
-        <!-- DB Prod schema manager -->
+        <!-- DB Prod schema manager
         <dependency>
             <groupId>com.mattbertolini</groupId>
             <artifactId>liquibase-slf4j</artifactId>
@@ -101,6 +101,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
     </dependencies>
 
     <build>
@@ -126,8 +127,8 @@
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost/taadb</url>
                     <defaultSchemaName></defaultSchemaName>
-                    <username>taausr</username>
-                    <password>taapwd</password>
+                    <username>root</username>
+                    <password>prootproot</password>
                     <referenceUrl>hibernate:spring:fr.istic.taa.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>

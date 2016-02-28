@@ -20,8 +20,8 @@ spring:
         url: jdbc:mysql://localhost/taadb
         databaseName: taadb
         serverName:
-        username: taausr
-        password: taapwd
+        username: root
+        password: prootproot
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
@@ -37,5 +37,5 @@ spring:
         hibernate:
             #https://github.com/liquibase/liquibase-hibernate/wiki#why-not-use-hbm2ddl
             #unsafe in production
-            ddl-auto: create
+            ddl-auto: false
             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
