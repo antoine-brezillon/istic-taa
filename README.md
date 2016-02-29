@@ -79,4 +79,3 @@ in order to build our containers using both Dockerfile and Dockerfile-init files
 We also could have use the `depends_on` key, allowing to build the containers in a specific order.
     - https://github.com/jwilder/nginx-proxy/issues/362  
     - https://docs.docker.com/compose/compose-file/#version-2
-
